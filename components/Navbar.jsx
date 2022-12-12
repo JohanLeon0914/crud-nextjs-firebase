@@ -1,9 +1,7 @@
 import React,{useEffect} from 'react'
 import Link from 'next/link'
 
-export default function Navbar() {
-
-
+export default function Navbar({user}) {
     //esta funcion lo que hace es ayudarnos con el error de bootstrap
     useEffect(()=>{
         if(typeof document !== undefined){
@@ -41,6 +39,19 @@ export default function Navbar() {
                   <a className="nav-link">Crear</a>
                 </Link>
               </li>
+              {user ? 
+              <li className="nav-item">
+                <button onClick={() => auth.signOut()}>
+                  Sign Out
+                </button>
+              </li> : 
+              <li className="nav-item">
+              <Link href="/login" legacyBehavior>
+                <a className="nav-link">Sign in</a>
+              </Link>
+            </li>
+              }
+              
             </ul>
           </div>
         </div>
